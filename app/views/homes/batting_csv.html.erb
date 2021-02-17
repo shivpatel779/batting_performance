@@ -1,0 +1,4 @@
+<%= form_tag({controller: 'homes', action: 'import_batting_csv'}, {:method => 'post', multipart: true }) do %>
+	<%= file_field_tag :file %>
+	<%= submit_tag( "Import" ) %>
+<% end %>

@@ -1,0 +1,37 @@
+<%= link_to "Import Batting CSV", batting_csv_path, method: :get %>  |  
+<%= link_to "Import Teams CSV", teams_csv_path, method: :get %>
+
+<div style="margin-top: 50px;">
+		<% if @batting_years.present? %>
+			<%= form_tag({controller: 'homes', action: 'index'}, {:method => 'get', multipart: true}) do %>
+				<%= select_tag("year", options_for_select(@batting_years, params[:year]), {class: '', prompt: 'All'}) %>
+				<%= text_field_tag :team_name, params[:team_name].present? ? params[:team_name] : "",  placeholder: "Search" %>
+				<%= submit_tag "Filter" %>
+				<%= link_to "Clear All", root_path, method: :get %>
+			<% end %>
+		<% end %>
+		<% if @battings.present? %>
+			<table style="width: 100%;">
+				<tr>
+					<th>playerID</th>
+					<th>yearId</th>
+					<th>Team name(s)</th>
+					<th>Batting Average</th>
+				</tr>
+				<% @battings.each do |batting| %>
+					<tr>
+						<td><%= batting.player_id %></td>
+						<td><%= batting.year_id %></td>
+						<td><%= batting.team_name %></td>
+						<td><%= batting.batting_average rescue "" %></td>
+					</tr>
+				<% end %>
+			</table>
+		<% end %>
+</div>
+<style type="text/css">
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
