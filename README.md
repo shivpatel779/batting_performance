@@ -6,12 +6,16 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+	ruby '2.7.1'
+
+	rails '6.0.3'
 
 * System dependencies
 
 * Configuration
 
 * Database creation
+	postgres
 
 * Database initialization
 
